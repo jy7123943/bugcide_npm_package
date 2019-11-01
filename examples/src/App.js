@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const App = () => {
   return (
@@ -30,6 +30,17 @@ const App = () => {
         }}
       >
         Create Async Error!
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          function forever () {
+            forever();
+          }
+          forever();
+        }}
+      >
+        Create Call Stack Error!
       </button>
     </div>
   );
