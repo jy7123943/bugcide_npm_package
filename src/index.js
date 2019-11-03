@@ -1,13 +1,44 @@
-const Bugcide = {
+export const Bugcide = {
   errorCount: 0,
-  isReadyToSendError: false,
   errorTimer: null,
   errorQueue: [],
-  init: function ({ projectToken }) {
-    console.log(projectToken);
+  serverUrl: 'http://localhost:8080',
+  projectToken: null,
+  initNewProjectApi: function (projectToken) {
+    return fetch(`${this.serverUrl}/project/${projectToken}`, {
+      method: 'POST'
+    })
+      .then(res => res.json());
+  },
+  sendErrorApi: function (projectToken, errorList) {
+    return fetch(`${this.serverUrl}/project/${projectToken}/error`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(errorList)
+    })
+      .then(res => res.json());
+  },
+  init: async function ({ projectToken }) {
+    try {
+      this.projectToken = projectToken;
+      const response = await this.initNewProjectApi(projectToken);
 
-    // if projectToken is valid
-    window.addEventListener('error', this.startTracking.bind(this));
+      if (response.result === 'unauthorized') {
+        throw new Error('Bugcide: Project Token is invalid!');
+      }
+
+      if (response.result !== 'ok') {
+        throw new Error('Something went wrong.');
+      }
+
+      window.addEventListener('error', this.startTracking.bind(this));
+      console.log('Bugcide is now tracking error!');
+    } catch (err) {
+      console.log(err);
+      return;
+    }
   },
   startTracking: async function (event) {
     const {
@@ -20,6 +51,7 @@ const Bugcide = {
     if (error.hasBeenCaught !== undefined) {
       return false;
     }
+
     error.hasBeenCaught = true;
     this.errorCount++;
 
@@ -34,21 +66,22 @@ const Bugcide = {
     const that = this;
     this.errorTimer = setTimeout(() => {
       clearTimeout(that.errorTimer);
-      that.isReadyToSendError = true;
-    }, 2000);
-
-    if (this.isReadyToSendError) {
-      // send request to server
-      console.log('-----', this.errorQueue);
-      this.errorQueue.forEach((er) => console.log(er.name));
+      const errorList = {
+        errorInfo: this.errorQueue.slice()
+      };
+      this.sendErrorApi(this.projectToken, errorList)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      console.log(this.errorQueue);
 
       this.errorQueue.length = 0;
-      this.isReadyToSendError = false;
-    }
+    }, 2000);
 
-    this.errorQueue.push(newError);
-
-    console.log('isReadyToSendError: ', this.isReadyToSendError);
+    this.errorQueue.unshift(newError);
 
     if (this.errorCount % 5 === 0) {
       const randomMessage = this.getRandom(this.encouragingMessages);
