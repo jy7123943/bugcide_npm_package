@@ -57,13 +57,17 @@ export const Bugcide = {
       const errorList = {
         errorInfo: this.errorQueue.slice()
       };
+
+      if (errorList.errorInfo.length === 0) {
+        return;
+      }
       this.sendErrorApi(this.projectToken, errorList)
         .then(response => {
           if (response.result === 'unauthorized') {
             throw new Error('Project Token is invalid!');
           }
 
-          if (response.result !== 'ok') {
+          if (response.result !== 'ok' && response.result !== 'not changed') {
             throw new Error('Something went wrong.');
           }
         })

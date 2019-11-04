@@ -7,12 +7,22 @@
   <title>Bugcide Demo</title>
 </head>
 <body>
+  <div>
+    <h1>Bugcide Demo</h1>
+    <button type="button" id="button01">Create Error</button>
+  </div>
   <script src="../src/bugcide.vanilla.js"></script>
   <script>
     Bugcide.init({ projectToken: 'sample-project05-OGbAk' });
   </script>
   <script>
-    throw new Error('vanilla javascript error');
+    // throw new Error('vanilla javascript error');
+    // const isError;
+    // isError = 1;
+
+    document.querySelector('#button01').addEventListener('click', () => {
+      throw new Error('event listener error');
+    });
   </script>
 </body>
 </html>
