@@ -1,4 +1,4 @@
-export const Bugcide = {
+const Bugcide = {
   errorCount: 0,
   errorTimer: null,
   errorQueue: [],
@@ -104,68 +104,3 @@ export const Bugcide = {
     '이것만 해결하면...!'
   ]
 };
-
-// import React from 'react';
-
-// class BugcideTracker extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     console.log(props.projectToken);
-//     // console.log(Bugcide);
-//     Bugcide.init({ projectToken: props.projectToken });
-//   }
-//   componentDidCatch(error) {
-//     Bugcide.errorCount++;
-//     console.log('Bugcide component did catch');
-//     const errorSource = error.stack.split(/\s\s+/g)[1];
-//     const startIndex = errorSource.indexOf('(') + 1;
-//     const endIndex = errorSource.lastIndexOf('?:');
-//     const colStartIndex = errorSource.lastIndexOf(':');
-
-//     const filename = errorSource.slice(startIndex, endIndex);
-//     const lineno = Number(errorSource.slice(endIndex + 2, colStartIndex));
-//     const colno = Number(errorSource.slice(colStartIndex + 1, errorSource.length - 1));
-
-//     // const errorQueue = [];
-//     const newError = {
-//       name: error.name,
-//       message: error.message,
-//       stack: error.stack,
-//       filename,
-//       lineno,
-//       colno,
-//       created_at: new Date()
-//     };
-
-//     Bugcide.errorTimer = setTimeout(() => {
-//       clearTimeout(Bugcide.errorTimer);
-//       const errorList = {
-//         errorInfo: Bugcide.errorQueue.slice()
-//       };
-//       Bugcide.sendErrorApi(this.props.projectToken, errorList)
-//         .then(response => {
-//           console.log(response);
-//         })
-//         .catch(err => {
-//           console.log(err);
-//         });
-//       console.log(Bugcide.errorQueue);
-
-//       Bugcide.errorQueue.length = 0;
-//     }, 2000);
-
-//     Bugcide.errorQueue.unshift(newError);
-
-//     if (Bugcide.errorCount % 5 === 0) {
-//       const randomMessage = Bugcide.getRandom(Bugcide.encouragingMessages);
-//       const randomImage = Bugcide.getRandom(Bugcide.encouragingImage);
-//       console.log(`%c${randomMessage}`, `font-size: 30px; line-height: 100px; padding-left: 160px; background:url(${randomImage}) no-repeat left center / 150px;`);
-//     }
-
-//     console.log(newError);
-//   }
-
-//   render() {
-//     return this.props.children;
-//   }
-// }
