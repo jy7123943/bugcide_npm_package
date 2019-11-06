@@ -95,6 +95,7 @@ export const Bugcide = {
           if (response.result !== 'ok' && response.result !== 'not changed') {
             throw new Error('Something went wrong.');
           }
+          console.log(response);
         })
         .catch(err => {
           console.log('Bugcide: ' + err.message);
