@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import List from './List';
 
 const App = (props) => {
   console.log(props);
-  const data = [1, 2, 3, 4, 5];
-  useEffect(() => {
-    // throw new Error('useEffect error');
-  }, []);
   return (
     <div>
       <h1>Bugcide demo</h1>
-      <ul>
-        {/* {data.map(num => <li>{num}</li>)} */}
-      </ul>
+      <List sayHello="hello" />
       <button
         type="button"
         onClick={() => {

@@ -54,13 +54,38 @@ const Bugcide = {
     const that = this;
     this.errorTimer = setTimeout(() => {
       clearTimeout(that.errorTimer);
-      const errorList = {
-        errorInfo: this.errorQueue.slice()
-      };
 
-      if (errorList.errorInfo.length === 0) {
+      if (this.errorQueue.length === 0) {
         return;
       }
+
+      let compressedList = [];
+      if (this.errorQueue.length > 1) {
+        let duplicateCount = 1;
+
+        compressedList = this.errorQueue.reduce((compressed, current) => {
+          const last = compressed.length - 1;
+          if (compressed[last] && compressed[last].stack === current.stack) {
+            duplicateCount++;
+            current.duplicate_count = duplicateCount;
+            compressed[last] = current;
+          } else {
+            duplicateCount = 1;
+            current.duplicate_count = duplicateCount;
+            compressed.push(current);
+          }
+          return compressed;
+        }, []);
+
+        console.log(compressedList);
+      } else {
+        compressedList = this.errorQueue.slice();
+      }
+
+      const errorList = {
+        errorInfo: compressedList
+      };
+
       this.sendErrorApi(this.projectToken, errorList)
         .then(response => {
           if (response.result === 'unauthorized') {
