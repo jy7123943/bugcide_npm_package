@@ -4,12 +4,6 @@ const Bugcide = {
   errorQueue: [],
   serverUrl: 'http://localhost:8080',
   projectToken: null,
-  initNewProjectApi: function (projectToken) {
-    return fetch(`${this.serverUrl}/project/${projectToken}`, {
-      method: 'POST'
-    })
-      .then(res => res.json());
-  },
   sendErrorApi: function (projectToken, errorList) {
     return fetch(`${this.serverUrl}/project/${projectToken}/error`, {
       method: 'POST',
