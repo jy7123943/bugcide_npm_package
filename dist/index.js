@@ -2,7 +2,7 @@ function Bugcide () {
   this.errorCount = 0;
   this.errorTimer = null;
   this.errorQueue = [];
-  this.serverUrl = 'http://localhost:8080';
+  this.serverUrl = 'http://bugcide-env-prod.iymfy5w5fp.ap-northeast-2.elasticbeanstalk.com';
   this.projectToken = null;
 
   this.sendErrorApi = function (projectToken, errorList) {
