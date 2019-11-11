@@ -54,4 +54,4 @@ bugcide.vanilla.js built files are also available through jsDelivr.
 
 ## License
 
-MIT
+[MIT](https://github.com/jy7123943/bugcide_npm_package/blob/master/LICENSE.md)
