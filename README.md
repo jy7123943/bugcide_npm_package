@@ -9,7 +9,7 @@ It captures any uncaught errors, report errors, and log messages.
 
 Getting started with Bugcide is a three step process:
 
-1. [Sign up for an account](https://bugcide.netlify.com/).
+1. [Sign up for an account](https://www.bugcide.live).
 2. Create a new project and get a Project Token.
 3. Follow the directions below to install Bugcide.
 
