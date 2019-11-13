@@ -72,12 +72,12 @@ You can download the latest version of bugcide.vanilla.js on [GitHub](https://gi
 bugcide.vanilla.js built files are also available through jsDelivr.
 
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.2/dist/bugcide.vanilla.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.2/dist/bugcide.vanilla.min.js"></script> // minified version
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.min.js"></script> // minified version
 ```
 
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.2/dist/bugcide.vanilla.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.js"></script>
 <script>
   new Bugcide().init({ projectToken: <your-project-token> });
 </script>
