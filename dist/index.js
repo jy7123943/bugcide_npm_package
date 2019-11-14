@@ -48,9 +48,8 @@ function Bugcide () {
     };
     this.errorQueue.unshift(newError);
 
-    const that = this;
     this.errorTimer = setTimeout(() => {
-      clearTimeout(that.errorTimer);
+      clearTimeout(this.errorTimer);
 
       if (this.errorQueue.length === 0) {
         return;
