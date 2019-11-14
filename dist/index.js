@@ -16,12 +16,12 @@ function Bugcide () {
       .then(res => res.json());
   };
 
-  this.init = async function ({ projectToken }) {
+  this.init = function ({ projectToken }) {
     window.addEventListener('error', event => this.startTracking.call(this, event, projectToken));
     console.log('Bugcide is now tracking error!');
   };
 
-  this.startTracking = async function (event, projectToken) {
+  this.startTracking = function (event, projectToken) {
     this.projectToken = projectToken;
     const {
       filename,

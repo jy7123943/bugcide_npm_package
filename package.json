@@ -4,7 +4,7 @@
   "description": "javascript error tracker",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r @babel/register -r jsdom-global/register -r isomorphic-fetch"
   },
   "author": "JY",
   "license": "MIT",
@@ -26,5 +26,21 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
+    "chai": "^4.2.0",
+    "core-js": "^3.4.1",
+    "isomorphic-fetch": "^2.2.1",
+    "jsdom": "15.2.1",
+    "jsdom-global": "3.0.2",
+    "mocha": "^6.2.2",
+    "regenerator-runtime": "^0.13.3",
+    "sinon": "^7.5.0"
+  },
+  "dependencies": {
+    "sinon-chai": "^3.3.0"
+  }
 }
