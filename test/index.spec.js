@@ -1,10 +1,7 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import Bugcide from '../dist/index';
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import { global } from 'core-js';
 chai.use(sinonChai);
 
 describe('Bugcide npm package', () => {
