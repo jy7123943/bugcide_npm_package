@@ -63,7 +63,7 @@ JWT_SECRET_KEY=<jwt-secret-key>
 ```
 git clone https://github.com/jy7123943/bugcide_client.git
 cd bugcide_client
-# 위에서 생성한 `.env`파일을 Root 디렉토리에 추가
+# 위에서 생성한 .env 파일을 Root 디렉토리에 추가
 npm install
 npm start
 ```
@@ -72,7 +72,7 @@ npm start
 ```
 git clone https://github.com/jy7123943/bugcide_server.git
 cd bugcide_server
-# 위에서 생성한 `.env`파일을 Root 디렉토리에 추가
+# 위에서 생성한 .env 파일을 Root 디렉토리에 추가
 npm install
 npm start
 ```
@@ -161,7 +161,7 @@ module.exports = {
 ### Npm Module & Webpack Plugin
 - Mocha, Chai, Sinon for Unit test
 
-## Version Control
+## Project Control
 - Git, GitHub
 - Trello를 이용한 Task 일정 관리
 
