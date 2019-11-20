@@ -1,6 +1,6 @@
 {
   "name": "bugcide",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "javascript error tracker",
   "main": "dist/index.js",
   "scripts": {

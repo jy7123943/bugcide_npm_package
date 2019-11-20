@@ -4,12 +4,14 @@
 
 ## Introduction
 **Bugcide**는 프론트엔드 개발을 하는 도중에 발생하는 에러를 수집하여 기록해주는 에러 트래킹 모듈입니다. 지원하는 개발 언어는 JavaScript로 Vanilla JavaScript와 React 개발 환경을 지원합니다. 아래의 Installation 가이드대로 설치 후 실행하면 프론트엔드 개발 시 발생하는 모든 에러를 감지하여 프로젝트별로 에러 로그를 관리해줍니다.
+**Bugcide** is a JavaScript error tracking solutions. It captures any uncaught errors, report errors, and log messages.
 
 ## Preview
 **배포 링크**:
 - Client: [https://www.bugcide.live](https://www.bugcide.live)
 - Npm Module: [https://www.npmjs.com/package/bugcide](https://www.npmjs.com/package/bugcide)
 - Webpack Plugin: [https://www.npmjs.com/package/bugcide-webpack-plugin](https://www.npmjs.com/package/bugcide-webpack-plugin)
+![Bugcide Preview](./img/bugcide_demo.gif)
 
 ## Features
 - GitHub 소셜 로그인
@@ -18,11 +20,11 @@
 - 프로젝트별 에러 관리
 - 시간대별 에러 타임라인 보기 제공
 - 최신순 및 역순 정렬 가능
-- 에러 타임라인 페이지 페이지네이션 기능
+- 에러 타임라인 페이지네이션 기능
 - 발생한 에러 메시지로 Google 및 Stack Overflow 검색 기능
 - 시간대별 에러 발생량 라인 차트 제공
 - 에러 타입별 버블 차트 제공
-- Browser 에러 연속 발생 시 console 창에 응원 메시지 제공
+- Browser 에러 연속 발생 시 console 창에 응원 메시지 출력
 
 ## Requirements
 - 로그인 시 사용자 GitHub 계정 필요
@@ -79,9 +81,14 @@ npm start
 
 ### Npm Module & Webpack Plugin
 사용자의 Vanilla JavaScript 혹은 React 프로젝트에 Bugcide를 적용하려면 다음과 같은 과정이 필요합니다.
-1. 위에서 실행한 Client 사이트 로그인
+1. 위에서 실행한 혹은 배포된 [Bugcide Client](https://www.bugcide.live) 로그인
 2. 새 프로젝트를 생성하여 프로젝트 토큰 발급
 3. 아래 가이드를 참고하여 Bugcide 설치 및 적용
+
+Getting started with Bugcide is a three step process:
+1. [Bugcide Login](https://www.bugcide.live)
+2. Create a new project and get a Project Token
+3. Follow the directions below to install Bugcide
 
 #### For React.js
 1. [`bugcide`](https://www.npmjs.com/package/bugcide), [`bugcide-webpack-plugin`](https://www.npmjs.com/package/bugcide-webpack-plugin) 설치
@@ -120,12 +127,12 @@ module.exports = {
 #### For Vanilla JavaScript
 1. jsDelivr CDN 이용 또는 [GitHub](https://github.com/jy7123943/bugcide_npm_package)에서 bugcide.vanilla.js 다운로드
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.min.js"></script> // minified version
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.4/dist/bugcide.vanilla.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.4/dist/bugcide.vanilla.min.js"></script> // minified version
 ```
 2. 아래 코드 추가
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.3/dist/bugcide.vanilla.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bugcide@1.0.4/dist/bugcide.vanilla.js"></script>
 <script>
   new Bugcide().init({ projectToken: <your-project-token> });
 </script>
@@ -146,7 +153,7 @@ module.exports = {
 - Node.js
 - Express
 - JSON Web Token Authentication
-- Mongo DB, Atlas
+- MongoDB, Atlas
 - Mongoose
 
 ### Npm Module & Webpack Plugin
@@ -154,7 +161,7 @@ module.exports = {
 
 ## Test
 ### Client
-- Jest, Enzyme for Component Unit test
+- Jest, Enzyme for Component & Reducer Unit test
 - End To End(E2E) Test with Cypress
 ![E2E Test](./img/e2e_test.gif)
 
@@ -181,12 +188,12 @@ module.exports = {
 ## Challenges
 - 처음에는 웹 브라우저에서 발생하는 에러만 감지하면 React 프로젝트에서 발생하는 모든 에러를 추적할 수 있으리라 생각했습니다. 그러나 React 환경에서는 대부분의 Syntax 에러가 Webpack Compile 단계에서 발생하여 에러가 감지되지 않는 문제점이 있었습니다. Compile 단계의 에러를 감지하기 위해 여러 방법을 모색하다가 Webpack Plugin을 만들어 해결하였습니다.
 - 에러 상황을 시각화하기 위해 Chart.js 라이브러리를 사용하려고 했으나 좀 더 화려한 애니메이션 효과를 넣기 위해 D3.js를 사용하여 시각화하였습니다. 사용하는 방법이 까다로워 애니메이션 효과를 넣는 것에 어려움이 있었으나 좀 더 시각적으로 보기 좋은 차트를 그릴 수 있었습니다.
-- 여러 개의 에러가 동시다발적으로 발생하는 경우를 대비하여 에러가 발생할 때마다 서버에 요청 보내는 것을 개선하기 위해 고민하였습니다. 에러 발생 시 2초 동안 추가로 발생하는 에러를 배열에 저장하였다가 한꺼번에 서버로 전송하는 방향으로 리팩토링하였습니다. 또한 한 배열에 동일한 에러 객체가 연속적으로 저장된 경우에는 하나의 에러 객체로 압축하여 서버에 전송하는 데이터의 양을 절감하였습니다. 결과적으로 이전보다 서버 Api 호출 횟수와 서버로 전송되는 데이터의 양을 약 2배 정도 절감하였습니다.
+- 여러 개의 에러가 동시다발적으로 발생하는 경우를 대비하여 에러가 발생할 때마다 서버에 요청 보내는 것을 개선하기 위해 고민하였습니다. 에러 발생 시 2초 동안 추가로 발생하는 에러를 배열에 저장하였다가 한꺼번에 서버로 전송하는 방향으로 리팩토링하였습니다. 또한 한 배열에 동일한 에러 객체가 연속적으로 저장된 경우에는 하나의 에러 객체로 압축하여 서버에 전송하는 데이터의 양을 절감하였습니다. 결과적으로 이전보다 서버 Api 호출 횟수와 서버로 전송되는 데이터의 양을 약 2배 정도 줄일 수 있었습니다.
 
 ## Things to do
 - Node.js 환경에서의 서버 에러 트래킹 기능
 - 일자별 에러 발생량 차트 추가
 - 에러 즐겨찾기 기능
-- 에러별 사용자 메모 기능
+- 에러별 사용자 메모 작성 및 저장 기능
 - 프로젝트 및 에러 검색 기능
 - Server Api Unit Test
