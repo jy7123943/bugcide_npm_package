@@ -13,6 +13,8 @@
 - Webpack Plugin: [https://www.npmjs.com/package/bugcide-webpack-plugin](https://www.npmjs.com/package/bugcide-webpack-plugin)
 ![Bugcide Preview](./img/bugcide_demo.gif)
 
+**Youtube 링크**: [https://youtu.be/eHWw5YXvRdQ](https://youtu.be/eHWw5YXvRdQ)
+
 ## Features
 - GitHub 소셜 로그인
 - Npm Module과 Webpack Plugin 지원
