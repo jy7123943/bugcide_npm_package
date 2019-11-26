@@ -3,7 +3,7 @@
 # Bugcide (Client & Server & Npm Module & Webpack Plugin)
 
 ## Introduction
-**Bugcide**는 프론트엔드 개발을 하는 도중에 발생하는 에러를 수집하여 기록해주는 에러 트래킹 모듈입니다. 지원하는 개발 언어는 JavaScript로 Vanilla JavaScript와 React 개발 환경을 지원합니다. 아래의 Installation 가이드대로 설치 후 실행하면 프론트엔드 개발 시 발생하는 모든 에러를 감지하여 프로젝트별로 에러 로그를 관리해줍니다.
+**Bugcide**는 프론트엔드 개발을 하는 도중에 발생하는 에러를 수집하여 기록해주는 에러 트래킹 모듈입니다. 지원하는 개발 언어는 JavaScript로 Vanilla JavaScript와 React 개발 환경을 지원합니다. 아래의 Installation 가이드대로 설치 후 실행하면 프론트엔드 개발 시 발생하는 모든 에러를 감지하여 프로젝트별로 에러 로그를 관리해줍니다.  
 **Bugcide** is a JavaScript error tracking solutions. It captures any uncaught errors, report errors, and log messages.
 
 ## Preview
@@ -110,7 +110,7 @@ new Bugcide().init({ projectToken: <your-project-token> });
 render(<App />, document.getElementById('root'));
 ```
 
-3. webpack.config.js
+3. webpack.config.js  
 Create React App으로 생성하여 eject한 리액트 앱은 정식으로 지원하지 않기 때문에 정상적으로 작동하지 않을 수 있습니다.
 ```javascript
 const bugcidePlugin = require('bugcide-webpack-plugin');
